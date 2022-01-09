@@ -1,11 +1,20 @@
 import { Button, FormControl, Input, InputLabel } from '@mui/material';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import './App.css';
 import Todo from './Todo';
+import db from './firebase';
 
 function App() {
-	const [todos, setTodos] = useState(['Hello']);
+	const [todos, setTodos] = useState([]);
 	const [input, setInput] = useState('');
+
+	useEffect(() => {
+		// this code fires when app.js loads
+
+		db.collection('todos').onSnapshot((snapshot) => {
+			setTodos(snapshot.docs.map((doc) => doc.data().todo));
+		});
+	}, []);
 
 	const addToDo = (e) => {
 		e.preventDefault();
@@ -16,11 +25,11 @@ function App() {
 
 	return (
 		<div className="app">
-			<h1>Welcome to my to-do-list</h1>
+			<h1>Welcome to my {Math.floor(Math.random() * 60)} 🚀</h1>
 
 			<form>
 				<FormControl>
-					<InputLabel>Write a to do</InputLabel>
+					<InputLabel>✅ Write a to do</InputLabel>
 					<Input
 						value={input}
 						type="text"
