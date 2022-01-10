@@ -3,6 +3,7 @@ import { useEffect, useState } from 'react';
 import './App.css';
 import Todo from './Todo';
 import db from './firebase';
+import firebase from 'firebase';
 
 function App() {
 	const [todos, setTodos] = useState([]);
@@ -11,21 +12,28 @@ function App() {
 	useEffect(() => {
 		// this code fires when app.js loads
 
-		db.collection('todos').onSnapshot((snapshot) => {
-			setTodos(snapshot.docs.map((doc) => doc.data().todo));
-		});
+		db.collection('todos')
+			.orderBy('timestamp', 'desc')
+			.onSnapshot((snapshot) => {
+				setTodos(snapshot.docs.map((doc) => doc.data().todo));
+			});
 	}, []);
 
 	const addToDo = (e) => {
 		e.preventDefault();
 
-		setTodos([...todos, input]);
+		db.collection('todos').add({
+			todo: input,
+			timestamp: firebase.firestore.FieldValue.serverTimestamp(),
+		});
+
+		// setTodos([...todos, input]);
 		setInput('');
 	};
 
 	return (
 		<div className="app">
-			<h1>Welcome to my {Math.floor(Math.random() * 60)} 🚀</h1>
+			<h1>Welcome to my {Math.floor(Math.random() * 10)} 🚀</h1>
 
 			<form>
 				<FormControl>
