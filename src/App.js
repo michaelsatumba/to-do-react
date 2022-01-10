@@ -39,7 +39,7 @@ function App() {
 
 			<form>
 				<FormControl>
-					<InputLabel>✅ Write a to do</InputLabel>
+					<InputLabel>✅ Write a todo</InputLabel>
 					<Input
 						value={input}
 						type="text"
