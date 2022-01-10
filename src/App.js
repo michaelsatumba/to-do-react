@@ -35,7 +35,7 @@ function App() {
 
 	return (
 		<div className="app">
-			<h1>Welcome to my {Math.floor(Math.random() * 10)} 🚀</h1>
+			<h1>Welcome to my todo list! 🚀</h1>
 
 			<form>
 				<FormControl>
@@ -61,6 +61,7 @@ function App() {
 			{todos.map((todo) => (
 				<Todo todo={todo} />
 			))}
+			<footer>👨‍💻 made by Michael Satumba with React & Firebase</footer>
 		</div>
 	);
 }
