@@ -61,7 +61,7 @@ function App() {
 			{todos.map((todo) => (
 				<Todo todo={todo} />
 			))}
-			<footer>👨‍💻 made by Michael Satumba with React & Firebase</footer>
+			<footer>👨‍💻 Made by Michael Satumba with React & Firebase</footer>
 		</div>
 	);
 }
