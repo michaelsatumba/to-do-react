@@ -36,7 +36,6 @@ function App() {
 	return (
 		<div className="app">
 			<h1>Welcome to my todo list! 🚀</h1>
-
 			<form>
 				<FormControl>
 					<InputLabel>✅ Write a todo</InputLabel>

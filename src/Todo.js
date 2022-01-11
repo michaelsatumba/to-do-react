@@ -1,8 +1,6 @@
 import {
 	Button,
-	FormControl,
 	Input,
-	InputLabel,
 	List,
 	ListItem,
 	ListItemText,
@@ -12,9 +10,8 @@ import './Todo.css';
 import React, { useState } from 'react';
 import db from './firebase';
 import DeleteIcon from '@mui/icons-material/Delete';
+import CheckIcon from '@mui/icons-material/Check';
 import Box from '@mui/material/Box';
-import Typography from '@mui/material/Typography';
-import firebase from 'firebase';
 
 const style = {
 	position: 'absolute',
@@ -47,6 +44,8 @@ function Todo(props) {
 		setOpen(false);
 	};
 
+	const handlerComplete = () => {};
+
 	return (
 		<>
 			<Modal
@@ -78,7 +77,7 @@ function Todo(props) {
 			</Modal>
 			<List className="todo__list">
 				<ListItem>
-					<ListItemText primary={props.todo.todo} />
+					<ListItemText primary={props.todo.todo.toUpperCase()} />
 				</ListItem>
 				<Button onClick={handleOpen}>Update todo</Button>
 				<Button
@@ -88,6 +87,16 @@ function Todo(props) {
 					}
 				>
 					<DeleteIcon></DeleteIcon> delete me
+				</Button>
+				<Button
+					color="success"
+					onClick={() => handlerComplete(props.todo.id)}
+					style={{
+						color: 'green',
+						cursor: 'pointer',
+					}}
+				>
+					<CheckIcon></CheckIcon> done
 				</Button>
 			</List>
 		</>
