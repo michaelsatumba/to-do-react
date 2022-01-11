@@ -4,6 +4,7 @@ import './App.css';
 import Todo from './Todo';
 import db from './firebase';
 import firebase from 'firebase';
+import Quote from './Quote';
 
 function App() {
 	const [todos, setTodos] = useState([]);
@@ -41,6 +42,7 @@ function App() {
 	return (
 		<div className="app">
 			<h1>Welcome to my todo list! 🚀</h1>
+			<Quote />
 			<form>
 				<FormControl>
 					<InputLabel>✅ Write a todo</InputLabel>
