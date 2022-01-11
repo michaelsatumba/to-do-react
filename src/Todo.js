@@ -44,8 +44,18 @@ function Todo(props) {
 		setOpen(false);
 	};
 
-	const handlerComplete = () => {};
+	const handlerComplete = () => {
+		const completed = props.todo.complete === true ? false : true;
+		db.collection('todos').doc(props.todo.id).set(
+			{
+				complete: completed,
+			},
+			{ merge: true }
+		);
+	};
 
+	const complete = props.todo.complete === true ? 'line-through' : 'none';
+	const completeGreen = props.todo.complete === true ? 'green' : 'black';
 	return (
 		<>
 			<Modal
@@ -77,7 +87,10 @@ function Todo(props) {
 			</Modal>
 			<List className="todo__list">
 				<ListItem>
-					<ListItemText primary={props.todo.todo.toUpperCase()} />
+					<ListItemText
+						primary={props.todo.todo.toUpperCase()}
+						style={{ textDecoration: complete, color: completeGreen }}
+					/>
 				</ListItem>
 				<Button onClick={handleOpen}>Update todo</Button>
 				<Button
